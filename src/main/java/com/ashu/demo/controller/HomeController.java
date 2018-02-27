@@ -1,6 +1,7 @@
 package com.ashu.demo.controller;
 
 import com.ashu.demo.model.AppUser;
+import com.ashu.demo.model.PotLuck;
 import com.ashu.demo.repository.AppRoleRepository;
 import com.ashu.demo.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,11 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String showLogin() {
+        return "login";
+    }
+
     @GetMapping("/register")
     public String registerUser(Model model)
     {
@@ -49,5 +55,13 @@ public class HomeController {
         user.addRole(roleRepository.findAppRoleByRoleName("USER"));
         userRepository.save(user);
         return "redirect:/";
+    }
+
+    @GetMapping("/addpotluck")
+    private String addPotluck(Model model){
+
+        model.addAttribute("potluck", new PotLuck());
+
+        return "potluckform";
     }
 }

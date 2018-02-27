@@ -28,13 +28,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/register","/css/**","/vendor/**","/js/**","/img/**","/addjob").permitAll()
+                .antMatchers("/","/register","/css/**","/vendor/**","/js/**","/img/**","/listpotluck").permitAll()
 
-                .antMatchers("/").hasAuthority("USER")
+                .antMatchers("/addpotluck").hasAuthority("USER")
 
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/login").permitAll()
                 //.formLogin().successForwardUrl("/loggedin")
                 .and()
                 //Displays 'you have been logged out' message on login form when a user logs out (default login form). Change this

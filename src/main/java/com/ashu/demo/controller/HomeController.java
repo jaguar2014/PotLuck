@@ -45,10 +45,8 @@ public class HomeController {
             return "register";
         }
 
-        if(request.getParameter("isEmployer")!=null)
-            user.addRole(roleRepository.findAppRoleByRoleName("EMPLOYER"));
-        else
-            user.addRole(roleRepository.findAppRoleByRoleName("APPLICANT"));
+
+        user.addRole(roleRepository.findAppRoleByRoleName("USER"));
         userRepository.save(user);
         return "redirect:/";
     }

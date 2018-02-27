@@ -4,7 +4,9 @@ import com.ashu.demo.model.AppUser;
 import com.ashu.demo.model.PotLuck;
 import com.ashu.demo.repository.AppRoleRepository;
 import com.ashu.demo.repository.AppUserRepository;
+import com.ashu.demo.repository.PotLuckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,9 @@ public class HomeController {
 
     @Autowired
     AppUserRepository userRepository;
+
+    @Autowired
+    PotLuckRepository potLuckRepository;
 
     @GetMapping("/")
     public String showIndex() {
@@ -63,5 +68,17 @@ public class HomeController {
         model.addAttribute("potluck", new PotLuck());
 
         return "potluckform";
+    }
+
+    @PostMapping("/addpotluck")
+    public String addPotLuckInfo(@Valid @ModelAttribute("potluck") PotLuck potLuck, BindingResult result, Authentication auth) {
+        if (result.hasErrors()) {
+            return "potluckform";
+        }
+       AppUser appUser=  userRepository.findAppUserByUsername(auth.getName());
+        potLuck.setAppUser(appUser);
+
+        potLuckRepository.save(potLuck);
+        return "listpotluck";
     }
 }

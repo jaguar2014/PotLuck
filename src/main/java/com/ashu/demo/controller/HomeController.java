@@ -79,6 +79,13 @@ public class HomeController {
         potLuck.setAppUser(appUser);
 
         potLuckRepository.save(potLuck);
-        return "listpotluck";
+        return "redirect:/listpotluck";
+    }
+
+    @GetMapping("/listpotluck")
+    public String viewPotLuckInfo(Model model) {
+        Iterable<PotLuck> potLucks = potLuckRepository.findAll();
+        model.addAttribute("newPots", potLucks);
+        return "listpotluckform";
     }
 }

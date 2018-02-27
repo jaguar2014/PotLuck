@@ -1,6 +1,7 @@
 package com.ashu.demo.config;
 
 import com.ashu.demo.model.AppRole;
+import com.ashu.demo.model.AppUser;
 import com.ashu.demo.repository.AppRoleRepository;
 import com.ashu.demo.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,15 @@ public class DataLoader implements CommandLineRunner {
         roleRepo.save(role);
 
 
+        AppUser appUser = new AppUser();
+
+        appUser.setUsername("Ashu");
+        appUser.setPassword("pass");
+        appUser.setFirstName("Ashenafi");
+
+        appUser.addRole(roleRepo.findAppRoleByRoleName("USER"));
+
+        userRepository.save(appUser);
 
 
     }}

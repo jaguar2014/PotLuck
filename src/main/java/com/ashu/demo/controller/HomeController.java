@@ -37,7 +37,12 @@ public class HomeController {
     public String showIndex(Model model,Authentication auth) {
 
         Iterable<PotLuck> potLucks  = potLuckRepository.findAll();
+       // Iterable<AppUser> appUsers = userRepository.findByPotLucksIn(potLucks);
+       // Iterable<AppUser> appUsers = potLuckRepository.find
         model.addAttribute("newPots", potLucks);
+       //model.addAttribute("appUser",appUsers);
+
+
         return "index";
 
     }
@@ -100,6 +105,7 @@ public class HomeController {
         List<PotLuck> potLucks = potLuckRepository.findByAppUsers(appUser);
        // List<PotLuck> potLucks  = potLuckRepository.findPotLucksByAppUsersIn(Arrays.asList(appUser));
         model.addAttribute("newPots", potLucks);
+        model.addAttribute("appUser", appUser);
         return "listpotluckform";
     }
     @GetMapping("/editpotluck/{id}")

@@ -40,6 +40,14 @@ public class PotLuck {
         this.appUsers = appUser;
     }
 
+    public List<AppUser> getAppUsers() {
+        return appUsers;
+    }
+
+    public void setAppUsers(List<AppUser> appUsers) {
+        this.appUsers = appUsers;
+    }
+
     public long getId() {
         return id;
     }

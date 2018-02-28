@@ -67,9 +67,8 @@
     <section>
       <table class="table table-striped">
         <thead>
-        <tr>
 
-          <th scope="col">User</th>
+        <tr>
           <th scope="col">Item</th>
           <th scope="col">Item Type</th>
           <th scope="col">Serving Size</th>
@@ -78,11 +77,19 @@
         <tbody th:each="potluck: ${newPots}">
         <tr>
 
-          <td><span sec:authentication="name">Bob</span></td>
+          <!--<td><span sec:authentication="name">Bob</span></td>-->
           <td th:text="${potluck.item}">potluck.item</td>
           <td th:text="${potluck.itemType}">potluck.item</td>
           <td th:text="${potluck.servingSize}">potluck.item</td>
+          <td>
+          <span th:each="user:${potluck.appUsers}">
+            <p th:text="${user.username}">potluck.item</p>
+          </span>
+          </td>
+          <!--<td th:text="">potluck.item</td>-->
+
           <td> <a th:href="@{/editpotluck/{id}(id=${potluck.id})}">Edit</a></td>
+
 
 
         </tr>

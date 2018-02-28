@@ -19,9 +19,9 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-  @NotEmpty
-  @NotNull
-  private String username;
+   @NotEmpty
+   @NotNull
+    private String username;
 
     @NotEmpty
     @NotNull
@@ -35,20 +35,29 @@ public class AppUser {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<AppRole> appRoles;
 
-    @OneToOne(mappedBy = "appUser")
-    private PotLuck potLuck;
+   @ManyToMany(mappedBy = "appUsers")
+    private List<PotLuck> potLucks;
 
-    public PotLuck getPotLuck() {
-        return potLuck;
+
+
+   public List<PotLuck> getPotLucks() {
+        return potLucks;
     }
 
-    public void setPotLuck(PotLuck potLuck) {
-        this.potLuck = potLuck;
+
+
+    public void addPotLuck(PotLuck p){
+        potLucks.add(p);
+    }
+
+    public void setPotLucks(List<PotLuck> potLucks) {
+        this.potLucks = potLucks;
     }
 
     public AppUser(){
 
         appRoles = new HashSet<>();
+        potLucks = new ArrayList<>();
 
     }
 

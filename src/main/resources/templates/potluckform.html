@@ -29,27 +29,11 @@
 <div class="container text-center">
 
     <form class="form-horizontal" th:action="@{/addpotluck}" th:object="${potluck}" method="post">
+        <input type="hidden" th:field="*{id}">
         <!-- Form Name -->
         <legend align="Center">Start sharing!</legend>
         <!-- Text input-->
         <div class="form-group">
-
-            <div class="col-sm-10">
-                <div  th:if="${#fields.hasErrors('appUser.firstName')}" th:errors="*{appUser.firstName}" class="well alert alert-danger" role="alert"></div>
-
-                <input  th:field="*{appUser.firstName}"  name="firstname" placeholder="Enter First Name" class="form-control"  type="text">
-            </div>
-        </div>
-        <div class="form-group">
-
-            <div class="col-sm-10">
-                <div  th:if="${#fields.hasErrors('appUser.lastName')}" th:errors="*{appUser.lastName}" class="well alert alert-danger" role="alert"></div>
-
-                <input  th:field="*{appUser.lastName}"  name="lastname" placeholder="Enter Last Name" class="form-control"  type="text">
-            </div>
-        </div>
-        <div class="form-group">
-
             <div class="col-sm-10">
                 <div  th:if="${#fields.hasErrors('item')}" th:errors="*{item}" class="well alert alert-danger" role="alert"></div>
 
@@ -57,7 +41,6 @@
             </div>
         </div>
         <div class="form-group">
-
             <div class="col-sm-10">
                 <div  th:if="${#fields.hasErrors('servingSize')}" th:errors="*{servingSize}" class="well alert alert-danger" role="alert"></div>
 
@@ -65,16 +48,12 @@
             </div>
         </div>
     <div class="form-group">
-
             <div class="col-sm-10">
                 <div  th:if="${#fields.hasErrors('itemType')}" th:errors="*{itemType}" class="well alert alert-danger" role="alert"></div>
 
                 <input  th:field="*{itemType}"  name="item" placeholder="Enter item type e.g Food,Drink,Dessert " class="form-control"  type="text">
             </div>
         </div>
-
-
-
         <!-- Button -->
 
         <div class="form-group">

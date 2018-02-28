@@ -31,15 +31,22 @@ public class DataLoader implements CommandLineRunner {
         roleRepo.save(role);
 
 
+
+
         AppUser appUser = new AppUser();
 
         appUser.setUsername("Ashu");
         appUser.setPassword("pass");
         appUser.setFirstName("Ashenafi");
-
         appUser.addRole(roleRepo.findAppRoleByRoleName("USER"));
-
         userRepository.save(appUser);
 
+      appUser= new AppUser();
+        appUser.setUsername("riri");
+        appUser.setFirstName("rekik");
+        appUser.setPassword("pass");
+        appUser.addRole(roleRepo.findAppRoleByRoleName("ADMIN"));
+        userRepository.save(appUser);
 
-    }}
+    }
+}

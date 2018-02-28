@@ -1,6 +1,7 @@
 package com.ashu.demo.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,15 +17,27 @@ public class PotLuck {
 
     private String itemType;
 
-    @OneToOne
-    private AppUser appUser;
 
-    public AppUser getAppUser() {
-        return appUser;
+    @ManyToMany
+    private List<AppUser> appUsers;
+
+
+
+    public void addAppUser(AppUser u){
+        appUsers.add(u);
     }
 
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
+    public PotLuck(){
+        appUsers = new ArrayList<>();
+    }
+
+
+    public List<AppUser> getAppUser() {
+        return appUsers;
+    }
+
+    public void setAppUser(List<AppUser> appUser) {
+        this.appUsers = appUser;
     }
 
     public long getId() {

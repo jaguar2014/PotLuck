@@ -28,13 +28,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/register","/css/**","/vendor/**","/js/**","/img/**","/listpotluck").permitAll()
+                .antMatchers("/","/register","/css/**","/vendor/**","/js/**","/img/**").permitAll()
 
-                .antMatchers("/addpotluck").hasAuthority("USER")
+                .antMatchers("/addpotluck","/listpotluck").hasAnyAuthority("USER" ,"ADMIN")
 
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                .formLogin().defaultSuccessUrl("/listpotluck")
                 .loginPage("/login").permitAll()
                 //.formLogin().successForwardUrl("/loggedin")
                 .and()
